@@ -51,6 +51,30 @@ class singlyLinked {
         temp.setNext(first);
         first = temp;
     }
+    int deleteTail() {
+        int value;
+        if(first.getNext() == null) {
+            value = first.getData();
+            first = null;
+        } else {
+            temp = first;
+            Node temp1 = temp.getNext();
+            do {
+                temp = temp1;
+                temp1 = temp1.getNext();
+                value = temp1.getData();
+            } while(temp1.getNext() != null);
+            temp.setNext(null);
+        }
+        return value;
+
+    }
+    int deleteHead() {
+        int value;
+        value = first.getData();
+        first = first.getNext();
+        return value;
+    }
     void printAll() {
         temp = first;
         System.out.println("Printing all..");
@@ -74,12 +98,14 @@ class Main {
         sl.insertHead(30);
         sl.insertHead(40);
         sl.insertHead(50);
+        System.out.println("DeletingHead " + Integer.toString(sl.deleteHead()));
 
         sl1.insertTail(10);
         sl1.insertTail(20);
         sl1.insertTail(30);
         sl1.insertTail(40);
         sl1.insertTail(50);
+        System.out.println("DeletingTail " + Integer.toString(sl1.deleteTail()));
 
         sl.printAll();
         sl1.printAll();
